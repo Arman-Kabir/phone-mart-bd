@@ -3,11 +3,15 @@
 // Search for Phones
 const searchPhone = () => {
 
+    // Clear Single phone data while searching
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.textContent = '';
+    
     // Take data from searchfield
     const searchField = document.getElementById('search-field');
     let searchText = searchField.value;
     // for Testing purpose
-    searchText = 'huawei';
+    // searchText = 'huawei';
     console.log(searchText);
 
     // Fetching data from cloud
