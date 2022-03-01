@@ -11,7 +11,7 @@ const searchPhone = () => {
     // searchField.value = '';
 
     // for Testing purpose
-    searchText = 'huawei';
+    // searchText = 'huawei';
     console.log(searchText);
 
     // Clear Single phone data while searching
@@ -29,7 +29,6 @@ const searchPhone = () => {
             .then(res => res.json())
             .then(data => displaySearchResult(data.data))
     }
-
 };
 
 // Display Phones
@@ -61,11 +60,12 @@ const displayPhones = phones => {
         `;
         searchResult.appendChild(div);
     });
+};
 
-}
+
 const displaySearchResult = phones => {
-    // console.log(phones);
-    // console.log(phones.length);
+    console.log(phones);
+    console.log(phones.length);
 
     // Taking search result id from dom
     const searchResult = document.getElementById('search-result');
@@ -74,12 +74,12 @@ const displaySearchResult = phones => {
     // Filtering 20 phones to display
     const phones_20 = phones.filter((phone, index) => {
         if (index < 5) {
-            // console.log(phone,index);
+            // TODO:console.log(phone,index);
             return phone;
         }
     })
-    // console.log(phones_20);
-    // console.log(phones_20.length);
+    console.log(phones_20);
+    console.log(phones_20.length);
 
     // Displaying 20 Phones
     displayPhones(phones_20);
@@ -88,15 +88,22 @@ const displaySearchResult = phones => {
     const divButton = document.createElement('div');
     divButton.classList.add('d-flex', 'align-items-center', 'justify-content-center');
 
-    divButton.innerHTML = `
-            <button  id="div-button" onclick="" class="btn text-dark fw-bold bg-warning p-2">See All</button>
-    `;
-    searchResult.appendChild(divButton);
+    // Validating button for wrong input
+    if (phones.length > 0) {
 
-    // Adding event listener to the All phones button 
-    document.getElementById('div-button').addEventListener('click', () => {
-        displayPhones(phones);
-    });
+        document.getElementById('wrong-input-error').style.display = 'none';
+
+        divButton.innerHTML = `
+            <button  id="div-button" class="btn text-dark fw-bold bg-warning p-2">See All</button>
+    `;
+        searchResult.appendChild(divButton);
+        // Adding event listener to the--> See All phones button 
+        document.getElementById('div-button').addEventListener('click', () => {
+            displayPhones(phones);
+        });
+    } else {
+        document.getElementById('wrong-input-error').style.display = 'block';
+    }
 };
 
 // Check Release Date
