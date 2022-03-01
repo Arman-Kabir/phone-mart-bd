@@ -3,16 +3,19 @@
 // Search for Phones
 const searchPhone = () => {
 
-    // Clear Single phone data while searching
-    const phoneDetails = document.getElementById('phone-details');
-    phoneDetails.textContent = '';
+    
 
     // Take data from searchfield
     const searchField = document.getElementById('search-field');
     let searchText = searchField.value;
     // for Testing purpose
-    // searchText = 'huawei';
+    searchText = '';
     console.log(searchText);
+
+    // Clear Single phone data while searching
+    const phoneDetails = document.getElementById('phone-details');
+    phoneDetails.textContent = '';
+
 
     // Fetching data from cloud
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -22,9 +25,9 @@ const searchPhone = () => {
 
 }
 
-const displaySearchResult = phones => {
+// Display Phones
+const displayPhones = phones => {
     console.log(phones);
-
     // Taking search result id from dom
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
@@ -50,6 +53,42 @@ const displaySearchResult = phones => {
         
         `;
         searchResult.appendChild(div);
+    });
+
+}
+const displaySearchResult = phones => {
+    // console.log(phones);
+    // console.log(phones.length);
+
+    // Taking search result id from dom
+    const searchResult = document.getElementById('search-result');
+    searchResult.textContent = '';
+
+    // Filtering 20 phones to display
+    const phones_20 = phones.filter((phone, index) => {
+        if (index < 5) {
+            // console.log(phone,index);
+            return phone;
+        }
+    })
+    // console.log(phones_20);
+    // console.log(phones_20.length);
+
+    // Displaying 20 Phones
+    displayPhones(phones_20);
+
+    // displaying all phones Button   ${displayPhones(phones)}
+    const divButton = document.createElement('div');
+    divButton.classList.add('d-flex', 'align-items-center', 'justify-content-center');
+
+    divButton.innerHTML = `
+            <button  id="div-button" onclick="" class="btn text-dark fw-bold bg-warning p-2">See All</button>
+    `;
+    searchResult.appendChild(divButton);
+
+    // Adding event listener to the All phones button 
+    document.getElementById('div-button').addEventListener('click', () => {
+        displayPhones(phones);
     });
 };
 
