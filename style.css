@@ -5,3 +5,16 @@
     justify-content: center;
     align-items: center;
 }
+
+#search-error{
+    color:red;
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+    display: none;
+}
+hr{
+    font-weight: bold;
+    color:red;
+    margin-bottom: 40px;
+}

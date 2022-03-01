@@ -3,27 +3,34 @@
 // Search for Phones
 const searchPhone = () => {
 
-    
-
     // Take data from searchfield
     const searchField = document.getElementById('search-field');
     let searchText = searchField.value;
+
+    // Clearing search field value
+    // searchField.value = '';
+
     // for Testing purpose
-    searchText = '';
+    searchText = 'huawei';
     console.log(searchText);
 
     // Clear Single phone data while searching
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
 
+    // Search Field Input Validation for Number and empty input
+    if (searchText == '' || !isNaN(searchText)) {
+        document.getElementById('search-error').style.display = 'block';
+    } else {
+        document.getElementById('search-error').style.display = 'none';
+        // Fetching data from cloud
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displaySearchResult(data.data))
+    }
 
-    // Fetching data from cloud
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data.data))
-
-}
+};
 
 // Display Phones
 const displayPhones = phones => {
