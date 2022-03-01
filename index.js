@@ -11,7 +11,7 @@ const searchPhone = () => {
     // searchField.value = '';
 
     // for Testing purpose
-    // searchText = 'huawei';
+    searchText = 'huawei';
     console.log(searchText);
 
     // Clear Single phone data while searching
