@@ -6,7 +6,7 @@ const searchPhone = () => {
     // Clear Single phone data while searching
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
-    
+
     // Take data from searchfield
     const searchField = document.getElementById('search-field');
     let searchText = searchField.value;
@@ -171,23 +171,23 @@ const displayPhoneDetail = phone => {
     
     <div class="d-flex flex-column">
         <span class="text-warning">WLAN</span>
-        <span class="ps-3 text-primary">${phone.others.WLAN}</span></div>
+        <span class="ps-3 text-primary">${phone.others?.WLAN}</span></div>
 
     <div class="d-flex flex-column">
         <span class="text-warning">Bluetooth</span>
-        <span class="ps-3 text-primary">${phone.others.Bluetooth}</span></div>
+        <span class="ps-3 text-primary">${phone.others?.Bluetooth}</span></div>
 
     <div class="d-flex flex-column">
         <span class="text-warning">GPS</span>
-        <span class="ps-3 text-primary">${phone.others.GPS}</span></div>
+        <span class="ps-3 text-primary">${phone.others?.GPS}</span></div>
 
     <div class="d-flex flex-column">
         <span class="text-warning">NFC</span>
-        <span class="ps-3 text-primary">${phone.others.NFC}</span></div>
+        <span class="ps-3 text-primary">${phone.others?.NFC}</span></div>
 
     <div class="d-flex flex-column">
         <span class="text-warning">Radio</span>
-        <span class="ps-3 text-primary">${phone.others.Radio}</span></div>
+        <span class="ps-3 text-primary">${phone.others?.Radio}</span></div>
 
     </div>
     `;
