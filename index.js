@@ -11,7 +11,7 @@ const searchPhone = () => {
     // searchField.value = '';
 
     // for Testing purpose
-    searchText = 'huawei';
+    searchText = 'iphone';
     console.log(searchText);
 
     // Clear Single phone data while searching
@@ -73,7 +73,7 @@ const displaySearchResult = phones => {
 
     // Filtering 20 phones to display
     const phones_20 = phones.filter((phone, index) => {
-        if (index < 5) {
+        if (index < 20) {
             // TODO:console.log(phone,index);
             return phone;
         }
@@ -132,10 +132,11 @@ const displayPhoneDetail = phone => {
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.textContent = '';
 
-    // Creating 3 divs to display details of a phone
+    // Creating 4 divs to display details of a phone
     // 1. Image,name,brand,release date
     // 2.Main Features
-    // 3.sensors and others
+    // 3.sensors and
+    // 4.Others
 
     // displaying Image,name,brand,release date
     const div1 = document.createElement('div');
@@ -156,8 +157,6 @@ const displayPhoneDetail = phone => {
             <span class="text-info">${checkReleaseDate(phone)}</span>
         </div>
 
-        
-        
     `;
     phoneDetails.appendChild(div1);
 
@@ -165,19 +164,18 @@ const displayPhoneDetail = phone => {
 
     // Displaying Main Features
     const div2 = document.createElement('div');
-    div2.classList.add('col');
-    div2.classList.add('middle-everything');
+    div2.classList.add('col', 'middle-everything');
     div2.innerHTML = `
-    <div class="text-center">
-    <h4 class="fw-bold text-dark bg-warning rounded-pill ">Main Features</h4>
+        <div class="text-center">
+            <h4 class="fw-bold text-dark bg-warning rounded-pill ">Main Features</h4>
 
     <div class="d-flex flex-column">
-    <span class="text-warning">Chipset:</span>
-    <span class="ps-3 text-primary">${phone.mainFeatures.chipSet}</span></div>
+        <span class="text-warning">Chipset:</span>
+        <span class="ps-3 text-primary">${phone.mainFeatures.chipSet}</span></div>
 
-    <div class="d-flex flex-column"><span class="text-warning">Memory:</span>
-    <span class="ps-3 text-primary">${phone.mainFeatures.memory
-        }</span></div>
+    <div class="d-flex flex-column">
+    <span class="text-warning">Memory:</span>
+    <span class="ps-3 text-primary">${phone.mainFeatures.memory}</span></div>
 
     <div class="d-flex flex-column">
     <span class="text-warning">Storage:</span>
@@ -190,8 +188,6 @@ const displayPhoneDetail = phone => {
     </div>
     `;
     phoneDetails.appendChild(div2);
-
-
 
     // displaying Sensors
     // Keeping sensors in a variable
@@ -215,12 +211,14 @@ const displayPhoneDetail = phone => {
 
     // Displaying Others
     const div4 = document.createElement('div');
-    div4.classList.add('col');
-    div4.classList.add('middle-everything');
-    div4.innerHTML = `
+    div4.classList.add('col', 'middle-everything');
+
+    // Checking whether data is available or not
+    if (phone.others) {
+        div4.innerHTML = `
 
     <div class="text-center">
-    <h3 class="fw-bold text-dark bg-warning rounded-pill p-2">Others</h3>
+        <h3 class="fw-bold text-dark bg-warning rounded-pill p-2">Others</h3>
     
     <div class="d-flex flex-column">
         <span class="text-warning">WLAN</span>
@@ -244,5 +242,8 @@ const displayPhoneDetail = phone => {
 
     </div>
     `;
+    } else {
+        div4.innerHTML = `<span class="text-info">No data Found</span>`;
+    }
     phoneDetails.appendChild(div4);
 }
