@@ -8,10 +8,10 @@ const searchPhone = () => {
     let searchText = searchField.value;
 
     // Clearing search field value
-    // searchField.value = '';
+    searchField.value = '';
 
     // for Testing purpose
-    searchText = 'iphone';
+    // searchText = 'iphone';
     console.log(searchText);
 
     // Clear Single phone data while searching
